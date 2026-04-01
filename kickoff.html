@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Daily Schedule Kickoff</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #f5f0e8;
+    font-family: 'DM Sans', sans-serif;
+    max-width: 393px;
+    margin: 0 auto;
+    padding: 20px 14px 40px;
+  }
+
+  h1 {
+    font-family: 'Lora', serif;
+    font-size: 18px;
+    color: #3a3228;
+    text-align: center;
+    margin-bottom: 4px;
+  }
+
+  .subtitle {
+    text-align: center;
+    font-size: 11px;
+    color: #9a8f82;
+    margin-bottom: 20px;
+    font-weight: 300;
+  }
+
+  .question {
+    background: #faf7f2;
+    border: 1px solid #ddd8ce;
+    border-radius: 8px;
+    padding: 10px 12px;
+    margin-bottom: 8px;
+  }
+
+  label {
+    display: block;
+    font-size: 11px;
+    font-weight: 500;
+    color: #7a6f62;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 6px;
+  }
+
+  input[type="text"], textarea, input[type="date"] {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #ddd8ce;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    color: #3a3228;
+    padding: 4px 0 6px;
+    outline: none;
+    resize: none;
+  }
+
+  input[type="text"]::placeholder,
+  textarea::placeholder {
+    color: #c0b8ae;
+    font-weight: 300;
+  }
+
+  textarea {
+    min-height: 52px;
+    line-height: 1.5;
+  }
+
+  .copy-btn {
+    display: block;
+    width: 100%;
+    margin-top: 16px;
+    padding: 13px;
+    background: #3a3228;
+    color: #f5f0e8;
+    border: none;
+    border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+
+  .copy-btn:active { background: #5a4a38; }
+
+  .confirm {
+    text-align: center;
+    font-size: 11px;
+    color: #9a8f82;
+    margin-top: 10px;
+    min-height: 16px;
+    font-weight: 300;
+  }
+
+  .reset-btn {
+    display: block;
+    width: 100%;
+    margin-top: 8px;
+    padding: 10px;
+    background: transparent;
+    color: #9a8f82;
+    border: 1px solid #ddd8ce;
+    border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    cursor: pointer;
+  }
+</style>
+</head>
+<body>
+
+<h1>Daily Schedule</h1>
+<p class="subtitle">Fill in what applies · copy · paste into Claude</p>
+
+<div class="question">
+  <label>Date</label>
+  <input type="date" id="q-date">
+</div>
+
+<div class="question">
+  <label>Meetings / Calendar Events</label>
+  <textarea id="q-meetings" placeholder="e.g. 10:35–11am EY/SAT Touchpoint, 4:05–4:35pm SOX Controls"></textarea>
+</div>
+
+<div class="question">
+  <label>Workout</label>
+  <input type="text" id="q-workout" placeholder="e.g. Ladder (55 min), Barry's, rest day">
+</div>
+
+<div class="question">
+  <label>Errands / Appointments / Outside Commitments</label>
+  <textarea id="q-errands" placeholder="e.g. Grocery run, doctor at 2pm"></textarea>
+</div>
+
+<div class="question">
+  <label>Tasks to Get Done Today</label>
+  <textarea id="q-tasks" placeholder="e.g. Wedding planning (2–3 hrs), taxes, admin"></textarea>
+</div>
+
+<div class="question">
+  <label>Carry-overs from Yesterday</label>
+  <input type="text" id="q-carryover" placeholder="e.g. Finished volunteer email, taxes still pending">
+</div>
+
+<div class="question">
+  <label>Bedtime Tonight</label>
+  <input type="text" id="q-bedtime" placeholder="e.g. 9:30pm, 11:30pm tonight">
+</div>
+
+<div class="question">
+  <label>Anything Flexible Today?</label>
+  <input type="text" id="q-flex" placeholder="e.g. Work start can shift, evening is open">
+</div>
+
+<div class="question">
+  <label>Anything Else Claude Should Know</label>
+  <textarea id="q-other" placeholder="e.g. Low energy day, expecting a call, skip outdoor walk"></textarea>
+</div>
+
+<button class="copy-btn" onclick="copyToClipboard()">Copy to clipboard</button>
+<button class="reset-btn" onclick="resetForm()">Clear all</button>
+<p class="confirm" id="confirm-msg"></p>
+
+<script>
+  function formatDate(val) {
+    if (!val) return "Not specified";
+    const [y, m, d] = val.split("-");
+    const months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+    const days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+    const dt = new Date(y, m - 1, d);
+    return `${days[dt.getDay()]}, ${months[m-1]} ${parseInt(d)}, ${y}`;
+  }
+
+  function val(id) {
+    return document.getElementById(id).value.trim();
+  }
+
+  function copyToClipboard() {
+    const date = formatDate(val("q-date"));
+    const lines = [
+      `📅 Schedule Request — ${date}`,
+      ``,
+      `Meetings / Events: ${val("q-meetings") || "None"}`,
+      `Workout: ${val("q-workout") || "Not specified"}`,
+      `Errands / Appointments: ${val("q-errands") || "None"}`,
+      `Tasks today: ${val("q-tasks") || "None"}`,
+      `Carry-overs: ${val("q-carryover") || "None"}`,
+      `Bedtime tonight: ${val("q-bedtime") || "Not specified"}`,
+      `Flexible today: ${val("q-flex") || "Nothing noted"}`,
+      `Other notes: ${val("q-other") || "None"}`,
+    ];
+
+    navigator.clipboard.writeText(lines.join("\n")).then(() => {
+      document.getElementById("confirm-msg").textContent = "Copied! Paste into Claude to build your schedule.";
+      setTimeout(() => document.getElementById("confirm-msg").textContent = "", 4000);
+    }).catch(() => {
+      document.getElementById("confirm-msg").textContent = "Copy failed — try selecting and copying manually.";
+    });
+  }
+
+  function resetForm() {
+    ["q-date","q-meetings","q-workout","q-errands","q-tasks","q-carryover","q-bedtime","q-flex","q-other"]
+      .forEach(id => document.getElementById(id).value = "");
+    document.getElementById("confirm-msg").textContent = "";
+  }
+</script>
+
+</body>
+</html>
