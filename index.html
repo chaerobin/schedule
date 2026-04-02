@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>Wednesday, April 1</title>
+<title>Thursday, April 2</title>
 <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -27,7 +27,6 @@
     letter-spacing: 0.01em;
   }
 
-  /* Legend */
   .legend {
     display: flex;
     flex-wrap: wrap;
@@ -41,8 +40,6 @@
     gap: 5px;
     font-size: 10px;
     color: #5a5248;
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 400;
   }
   .legend-dot {
     width: 10px;
@@ -51,7 +48,6 @@
     flex-shrink: 0;
   }
 
-  /* Section headers */
   .section-label {
     font-family: 'DM Sans', sans-serif;
     font-size: 9px;
@@ -62,7 +58,6 @@
     margin: 18px 0 6px 4px;
   }
 
-  /* Schedule rows */
   .row {
     display: flex;
     align-items: stretch;
@@ -114,7 +109,6 @@
     font-weight: 300;
   }
 
-  /* Color variants */
   .sage { background: #c8d8c0; border-color: #b8ccb0; }
   .sage .time-col { color: #3a5230; border-right-color: #b8ccb0; }
   .sage .task-name { color: #3a5230; }
@@ -135,7 +129,6 @@
   .gold .task-name { color: #5a3a1a; }
   .gold .task-sub { color: #6a4a2a; }
 
-  /* Footer */
   .footer {
     text-align: center;
     font-size: 10px;
@@ -148,15 +141,13 @@
 </head>
 <body>
 
-<h1>Wednesday, April 1</h1>
+<h1>Thursday, April 2</h1>
 
-<!-- Legend -->
 <div class="legend">
   <div class="legend-item"><div class="legend-dot" style="background:#c8d8c0;"></div>Work</div>
-  <div class="legend-item"><div class="legend-dot" style="background:#ccd4e0;"></div>Wellness / breaks</div>
-  <div class="legend-item"><div class="legend-dot" style="background:#e0cdd4;"></div>Out &amp; about</div>
-  <div class="legend-item"><div class="legend-dot" style="background:#e0d0bc;"></div>Key moments</div>
-  <div class="legend-item"><div class="legend-dot" style="background:#faf7f2; border:1px solid #ddd8ce;"></div>Default</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#ccd4e0;"></div>Wellness / Breaks</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#e0cdd4;"></div>Out &amp; About</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#e0d0bc;"></div>Key Moments</div>
 </div>
 
 <!-- MORNING -->
@@ -170,27 +161,11 @@
   </div>
 </div>
 
-<div class="row rose">
+<div class="row gold">
   <div class="time-col">7:15 AM</div>
   <div class="task-col">
-    <div class="task-name">Ladder workout</div>
-    <div class="task-sub">55 min · 5 min each way to building gym</div>
-  </div>
-</div>
-
-<div class="row">
-  <div class="time-col">8:10 AM</div>
-  <div class="task-col">
-    <div class="task-name">Shower · Exfoliate · Get dressed</div>
-    <div class="task-sub">Full body exfoliation paired with shower (45 min)</div>
-  </div>
-</div>
-
-<div class="row gold">
-  <div class="time-col">8:55 AM</div>
-  <div class="task-col">
-    <div class="task-name">Work start</div>
-    <div class="task-sub">5 min buffer · settle in, review day</div>
+    <div class="task-name">Early work start</div>
+    <div class="task-sub">Offsetting midday Ladder workout + shower (1h45min)</div>
   </div>
 </div>
 
@@ -198,33 +173,49 @@
 <div class="section-label">Work</div>
 
 <div class="row sage">
-  <div class="time-col">9:00 AM</div>
+  <div class="time-col">7:15 AM</div>
   <div class="task-col">
     <div class="task-name">Focused work block</div>
     <div class="task-sub">Walking pad for steps · deep work</div>
   </div>
 </div>
 
-<div class="row blue">
-  <div class="time-col">10:00 AM</div>
+<div class="row rose">
+  <div class="time-col">8:00 AM</div>
   <div class="task-col">
-    <div class="task-name">Mental break · Outside walk</div>
-    <div class="task-sub">10 min · fresh air before meetings</div>
+    <div class="task-name">Gold's Gym · Recovery room</div>
+    <div class="task-sub">5 min walk · 40 min recovery (working) · 5 min walk back</div>
   </div>
 </div>
 
 <div class="row sage">
-  <div class="time-col">10:10 AM</div>
+  <div class="time-col">8:50 AM</div>
   <div class="task-col">
-    <div class="task-name">Focused work</div>
-    <div class="task-sub">Prep for upcoming meetings (25 min)</div>
+    <div class="task-name">Focused work block</div>
+    <div class="task-sub">Settle in · prep for morning meetings</div>
+  </div>
+</div>
+
+<div class="row sage">
+  <div class="time-col">9:35 AM</div>
+  <div class="task-col">
+    <div class="task-name">Jeff &amp; Chantel Touchpoint</div>
+    <div class="task-sub">Meeting · 25 min</div>
+  </div>
+</div>
+
+<div class="row sage">
+  <div class="time-col">10:05 AM</div>
+  <div class="task-col">
+    <div class="task-name">Quick Internal Catch-Up</div>
+    <div class="task-sub">Meeting · 25 min</div>
   </div>
 </div>
 
 <div class="row sage">
   <div class="time-col">10:35 AM</div>
   <div class="task-col">
-    <div class="task-name">EY / SAT Touchpoint</div>
+    <div class="task-name">Tech &amp; Business Weekly</div>
     <div class="task-sub">Meeting · 25 min</div>
   </div>
 </div>
@@ -232,48 +223,56 @@
 <div class="row sage">
   <div class="time-col">11:05 AM</div>
   <div class="task-col">
-    <div class="task-name">Jennifer 10/10</div>
+    <div class="task-name">Virtual Coffee Catch-Up</div>
     <div class="task-sub">Meeting · 25 min</div>
   </div>
 </div>
 
-<div class="row sage">
+<div class="row blue">
   <div class="time-col">11:30 AM</div>
   <div class="task-col">
-    <div class="task-name">Focused work block</div>
-    <div class="task-sub">Walking pad for steps · post-meeting follow-ups</div>
+    <div class="task-name">Mental break</div>
+    <div class="task-sub">10 min · step away before lunch</div>
   </div>
 </div>
 
 <div class="row">
-  <div class="time-col">12:30 PM</div>
+  <div class="time-col">11:40 AM</div>
   <div class="task-col">
     <div class="task-name">Lunch</div>
-    <div class="task-sub">Heat meal (10–15 min cook) · eat while working or resting (30 min)</div>
+    <div class="task-sub">Heat meal (10–15 min) · eat while working or resting (30 min)</div>
   </div>
 </div>
 
-<div class="row blue">
-  <div class="time-col">1:15 PM</div>
+<div class="row rose">
+  <div class="time-col">12:30 PM</div>
   <div class="task-col">
-    <div class="task-name">Mental break</div>
-    <div class="task-sub">10 min · step away from screen</div>
+    <div class="task-name">Ladder workout · Shower</div>
+    <div class="task-sub">40 min workout · 5 min each way to building gym · 45 min shower</div>
   </div>
 </div>
 
 <div class="row sage">
-  <div class="time-col">1:25 PM</div>
+  <div class="time-col">2:15 PM</div>
   <div class="task-col">
     <div class="task-name">Focused work block</div>
-    <div class="task-sub">Walking pad for steps</div>
+    <div class="task-sub">Walking pad for steps · back to desk</div>
   </div>
 </div>
 
 <div class="row blue">
-  <div class="time-col">3:15 PM</div>
+  <div class="time-col">2:35 PM</div>
   <div class="task-col">
     <div class="task-name">Mental break · Outside walk</div>
-    <div class="task-sub">10–15 min · afternoon reset</div>
+    <div class="task-sub">10 min · reset before DFS meeting</div>
+  </div>
+</div>
+
+<div class="row sage">
+  <div class="time-col">2:45 PM</div>
+  <div class="task-col">
+    <div class="task-name">DFS Migrations</div>
+    <div class="task-sub">Meeting · 45 min</div>
   </div>
 </div>
 
@@ -281,28 +280,28 @@
   <div class="time-col">3:30 PM</div>
   <div class="task-col">
     <div class="task-name">Focused work block</div>
-    <div class="task-sub">Prep for SOX controls meeting</div>
-  </div>
-</div>
-
-<div class="row sage">
-  <div class="time-col">4:05 PM</div>
-  <div class="task-col">
-    <div class="task-name">SOX Controls × Batch Onboarding</div>
-    <div class="task-sub">Meeting · 30 min</div>
+    <div class="task-sub">Walking pad for steps · wrap up tasks</div>
   </div>
 </div>
 
 <div class="row blue">
-  <div class="time-col">4:35 PM</div>
+  <div class="time-col">4:30 PM</div>
   <div class="task-col">
-    <div class="task-name">Decompress</div>
-    <div class="task-sub">10–15 min · transition out of work mode</div>
+    <div class="task-name">Mental break · Outside walk</div>
+    <div class="task-sub">15 min · fresh air before EOD</div>
+  </div>
+</div>
+
+<div class="row sage">
+  <div class="time-col">4:45 PM</div>
+  <div class="task-col">
+    <div class="task-name">Focused work block</div>
+    <div class="task-sub">Final push · EOD wrap</div>
   </div>
 </div>
 
 <div class="row gold">
-  <div class="time-col">4:50 PM</div>
+  <div class="time-col">5:00 PM</div>
   <div class="task-col">
     <div class="task-name">Work wrap</div>
     <div class="task-sub">Close tabs, notes, EOD tidy-up</div>
@@ -313,58 +312,50 @@
 <div class="section-label">Evening</div>
 
 <div class="row">
-  <div class="time-col">5:00 PM</div>
-  <div class="task-col">
-    <div class="task-name">Dinner + Wedding planning</div>
-    <div class="task-sub">Heat meal while you settle in · eat while planning (2–3 hrs)</div>
-  </div>
-</div>
-
-<div class="row">
   <div class="time-col">5:10 PM</div>
   <div class="task-col">
-    <div class="task-name">↳ Dinner ready · eating begins</div>
-    <div class="task-sub">Done eating by ~5:40–5:50 PM · goal: done by 6 PM ✓</div>
+    <div class="task-name">Dinner</div>
+    <div class="task-sub">Heat meal · eat by 6 PM goal ✓</div>
   </div>
 </div>
 
 <div class="row">
-  <div class="time-col">8:00 PM</div>
+  <div class="time-col">5:50 PM</div>
   <div class="task-col">
-    <div class="task-name">Wedding planning wraps</div>
-    <div class="task-sub">Natural close around 7–8 PM depending on pace</div>
+    <div class="task-name">Wedding planning</div>
+    <div class="task-sub">2–3 hrs · carry-over from Wednesday</div>
   </div>
 </div>
 
 <div class="row">
-  <div class="time-col">8:15 PM</div>
+  <div class="time-col">8:30 PM</div>
   <div class="task-col">
     <div class="task-name">Day review · Gratitude journal</div>
-    <div class="task-sub">Reflect on the day · write 3 things (5 min)</div>
+    <div class="task-sub">Reflect · write 3 things (5 min)</div>
   </div>
 </div>
 
 <div class="row gold">
-  <div class="time-col">8:30 PM</div>
+  <div class="time-col">9:00 PM</div>
   <div class="task-col">
     <div class="task-name">Electronics off</div>
-    <div class="task-sub">Target: 1 hour before bed · goal: 9:30 PM bedtime</div>
+    <div class="task-sub">1 hour before 10 PM bedtime</div>
   </div>
 </div>
 
 <div class="row blue">
-  <div class="time-col">8:30 PM</div>
+  <div class="time-col">9:00 PM</div>
   <div class="task-col">
-    <div class="task-name">Bedtime routine</div>
-    <div class="task-sub">15 min wind-down</div>
+    <div class="task-name">Bedtime routine · Red light therapy · ZIIP Halo</div>
+    <div class="task-sub">Skincare (15 min) · red light + ZIIP on bare face (20 min) · total ~35 min</div>
   </div>
 </div>
 
 <div class="row">
-  <div class="time-col">9:30 PM</div>
+  <div class="time-col">10:00 PM</div>
   <div class="task-col">
     <div class="task-name">Bedtime</div>
-    <div class="task-sub">~8 hours sleep · wake 7:00 AM ✓</div>
+    <div class="task-sub">~9 hours sleep · wake 7:00 AM ✓</div>
   </div>
 </div>
 
