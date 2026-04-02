@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>Daily Schedule Kickoff</title>
+<title>Daily Schedule Survey</title>
 <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -21,15 +21,7 @@
     font-size: 18px;
     color: #3a3228;
     text-align: center;
-    margin-bottom: 4px;
-  }
-
-  .subtitle {
-    text-align: center;
-    font-size: 11px;
-    color: #9a8f82;
     margin-bottom: 20px;
-    font-weight: 300;
   }
 
   .question {
@@ -50,7 +42,15 @@
     margin-bottom: 6px;
   }
 
-  input[type="text"], textarea, input[type="date"] {
+  .hint {
+    font-size: 10px;
+    color: #b0a898;
+    font-weight: 300;
+    margin-bottom: 6px;
+    line-height: 1.4;
+  }
+
+  input[type="text"], input[type="date"] {
     width: 100%;
     background: transparent;
     border: none;
@@ -60,18 +60,12 @@
     color: #3a3228;
     padding: 4px 0 6px;
     outline: none;
-    resize: none;
   }
 
   input[type="text"]::placeholder,
-  textarea::placeholder {
+  input[type="date"]::placeholder {
     color: #c0b8ae;
     font-weight: 300;
-  }
-
-  textarea {
-    min-height: 52px;
-    line-height: 1.5;
   }
 
   .copy-btn {
@@ -119,8 +113,7 @@
 </head>
 <body>
 
-<h1>Daily Schedule</h1>
-<p class="subtitle">Fill in what applies · copy · paste into Claude</p>
+<h1>Daily Schedule Survey</h1>
 
 <div class="question">
   <label>Date</label>
@@ -128,33 +121,38 @@
 </div>
 
 <div class="question">
-  <label>Meetings / Calendar Events</label>
-  <textarea id="q-meetings" placeholder="e.g. 10:35–11am EY/SAT Touchpoint, 4:05–4:35pm SOX Controls"></textarea>
-</div>
-
-<div class="question">
-  <label>Workout</label>
-  <input type="text" id="q-workout" placeholder="e.g. Ladder (55 min), Barry's, rest day">
+  <label>Work Meetings</label>
+  <div class="hint">Include name, start time, and end time for each</div>
+  <input type="text" id="q-meetings" placeholder="e.g. 9:35–10am Jeff & Chantel Touchpoint, 2:45–3:30pm DFS Migrations">
 </div>
 
 <div class="question">
   <label>Errands / Appointments / Outside Commitments</label>
-  <textarea id="q-errands" placeholder="e.g. Grocery run, doctor at 2pm"></textarea>
+  <div class="hint">Include location, duration, and whether you can multi-task during</div>
+  <input type="text" id="q-errands" placeholder="e.g. Gold's Gym recovery 40 min (can multi-task), grocery run">
 </div>
 
 <div class="question">
   <label>Tasks to Get Done Today</label>
-  <textarea id="q-tasks" placeholder="e.g. Wedding planning (2–3 hrs), taxes, admin"></textarea>
+  <div class="hint">Include carry-overs from yesterday & estimated times for completion</div>
+  <input type="text" id="q-tasks" placeholder="e.g. Wedding planning 2–3 hrs, taxes (carry-over)">
 </div>
 
 <div class="question">
-  <label>Carry-overs from Yesterday</label>
-  <input type="text" id="q-carryover" placeholder="e.g. Finished volunteer email, taxes still pending">
+  <label>Workout</label>
+  <div class="hint">Include type, duration, and location information</div>
+  <input type="text" id="q-workout" placeholder="e.g. Ladder 40 min, Barry's 7am, rest day">
 </div>
 
 <div class="question">
-  <label>Bedtime Tonight</label>
-  <input type="text" id="q-bedtime" placeholder="e.g. 9:30pm, 11:30pm tonight">
+  <label>Work Start Time</label>
+  <div class="hint">Leave blank if 9am. Note if you want an early start.</div>
+  <input type="text" id="q-workstart" placeholder="e.g. 7:15am (offsetting midday workout)">
+</div>
+
+<div class="question">
+  <label>Tonight's Bedtime</label>
+  <input type="text" id="q-bedtime" placeholder="e.g. 9:30pm, 11pm">
 </div>
 
 <div class="question">
@@ -164,7 +162,8 @@
 
 <div class="question">
   <label>Anything Else Claude Should Know</label>
-  <textarea id="q-other" placeholder="e.g. Low energy day, expecting a call, skip outdoor walk"></textarea>
+  <div class="hint">Low energy, skip outdoor walk, guests, early commitments, etc.</div>
+  <input type="text" id="q-other" placeholder="e.g. Low energy day, skipping outdoor walk">
 </div>
 
 <button class="copy-btn" onclick="copyToClipboard()">Copy to clipboard</button>
@@ -190,12 +189,12 @@
     const lines = [
       `📅 Schedule Request — ${date}`,
       ``,
-      `Meetings / Events: ${val("q-meetings") || "None"}`,
-      `Workout: ${val("q-workout") || "Not specified"}`,
+      `Work meetings: ${val("q-meetings") || "None"}`,
       `Errands / Appointments: ${val("q-errands") || "None"}`,
       `Tasks today: ${val("q-tasks") || "None"}`,
-      `Carry-overs: ${val("q-carryover") || "None"}`,
-      `Bedtime tonight: ${val("q-bedtime") || "Not specified"}`,
+      `Workout: ${val("q-workout") || "Not specified"}`,
+      `Work start: ${val("q-workstart") || "9am (default)"}`,
+      `Tonight's bedtime: ${val("q-bedtime") || "Not specified"}`,
       `Flexible today: ${val("q-flex") || "Nothing noted"}`,
       `Other notes: ${val("q-other") || "None"}`,
     ];
@@ -209,7 +208,7 @@
   }
 
   function resetForm() {
-    ["q-date","q-meetings","q-workout","q-errands","q-tasks","q-carryover","q-bedtime","q-flex","q-other"]
+    ["q-date","q-meetings","q-errands","q-tasks","q-workout","q-workstart","q-bedtime","q-flex","q-other"]
       .forEach(id => document.getElementById(id).value = "");
     document.getElementById("confirm-msg").textContent = "";
   }
